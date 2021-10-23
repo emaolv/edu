@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mall.emaolv.common.util.R;
 import com.mall.emaolv.service.edu.entity.Teacher;
+import com.mall.emaolv.service.edu.entity.vo.TeacherQueryVo;
 import com.mall.emaolv.service.edu.service.TeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -86,10 +87,10 @@ public class TeacherController {
     @ApiOperation("分页讲师列表")
     @GetMapping("list/{page}/{limit}")
     public R listPage(@ApiParam(value = "当前页码", required = true) @PathVariable Long page,
-                      @ApiParam(value = "每页记录数", required = true) @PathVariable Long limit){
+                      @ApiParam(value = "每页记录数", required = true) @PathVariable Long limit,
+                        @ApiParam("讲师列表查询对象") TeacherQueryVo teacherQueryVo){
 
-        Page<Teacher> pageParam = new Page<>(page, limit);
-        IPage<Teacher> pageModel = teacherService.page(pageParam);
+        IPage<Teacher> pageModel = teacherService.selectPage(page, limit, teacherQueryVo);
         List<Teacher> records = pageModel.getRecords();
         long total = pageModel.getTotal();
         return  R.ok().data("total", total).data("rows", records);
