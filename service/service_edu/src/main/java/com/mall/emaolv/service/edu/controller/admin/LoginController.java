@@ -29,7 +29,7 @@ public class LoginController {
                 .data("name","磐石在线学院")
                 .data("roles","admin")
                 .data("introduction","I am super man")
-                .data("avatar","https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png");
+                .data("avatar","https://cn.vuejs.org/images/logo.svg");
     }
 
     @ApiOperation("退出")
