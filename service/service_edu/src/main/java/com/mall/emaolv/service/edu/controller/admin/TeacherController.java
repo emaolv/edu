@@ -26,15 +26,15 @@ import java.util.List;
 @CrossOrigin
 @Api(tags="讲师管理")
 @RestController
-@RequestMapping("/edu/teacher")
+@RequestMapping("/admin/edu/teacher")
 public class TeacherController {
 
     @Autowired
     private TeacherService teacherService;
 
     @ApiOperation("获取所有讲师信息")
-    @GetMapping("getInfo")
-    public R getInfo(){
+    @GetMapping("getAllInfo")
+    public R getAllInfo(){
         List<Teacher> list = teacherService.list();
         return R.ok().data("items", list).message("成功获取讲师列表");
 
