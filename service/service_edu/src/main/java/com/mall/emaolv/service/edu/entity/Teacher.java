@@ -1,9 +1,7 @@
 package com.mall.emaolv.service.edu.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,6 +12,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
 
 /**
  * <p>
@@ -66,16 +65,17 @@ public class Teacher implements Serializable {
     private LocalDate joinDate;
 
     @ApiModelProperty("逻辑删除 1（true）已删除， 0（false）未删除")
+    @TableLogic
     @TableField("is_deleted")
     private Integer isDeleted;
 
     @ApiModelProperty("创建时间")
-    @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime gmtCreate;
+    @TableField(value="gmt_create", fill=FieldFill.INSERT)
+    private Date gmtCreate;
 
     @ApiModelProperty("更新时间")
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime gmtModified;
+    @TableField(value="gmt_modified", fill=FieldFill.INSERT_UPDATE)
+    private Date gmtModified;
 
 
 }
