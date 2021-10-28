@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mall.emaolv.service.edu.entity.Teacher;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mall.emaolv.service.edu.entity.vo.TeacherQueryVo;
+import org.springframework.stereotype.Service;
 
 /**
  * <p>
@@ -13,6 +14,7 @@ import com.mall.emaolv.service.edu.entity.vo.TeacherQueryVo;
  * @author xiaohei
  * @since 2021-10-23
  */
+@Service
 public interface TeacherService extends IService<Teacher> {
     IPage<Teacher> selectPage(Long page, Long limit, TeacherQueryVo teacherQueryVo);
 }
