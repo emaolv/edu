@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -104,7 +105,6 @@ public class TeacherController {
     public R batchRemove(
             @ApiParam(value = "讲师ID列表", required = true)
             @RequestBody List<String> idList){
-        log.info("======"+idList+"====");
         boolean result = teacherService.removeByIds(idList);
         if(result){
             return R.ok().message("批量删除成功");
@@ -112,6 +112,12 @@ public class TeacherController {
             return R.error().message("数据不存在");
         }
     }
-
-
+    @ApiOperation(value = "根据关键字查询讲师列表", notes = "根据关键字查询讲师列表")
+    @GetMapping("list/name/{key}")
+    public R selectNameListByKey(
+            @ApiParam(value = "关键字", required = true)
+            @PathVariable String key){
+        List<Map<String, Object>> nameList = teacherService.selectNameList(key);
+        return R.ok().data("nameList", nameList);
+    }
 }
