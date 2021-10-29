@@ -1,7 +1,10 @@
 package com.mall.emaolv.service.base.handler;
 
+import com.mall.emaolv.common.util.ExceptionUtils;
 import com.mall.emaolv.common.util.R;
 import com.mall.emaolv.common.util.ResultCodeEnum;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.reflection.ExceptionUtil;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Controller;
@@ -9,11 +12,14 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.swing.text.EditorKit;
+
 /**
  * @author ：Xiao Hei
  * @description：GlobalExceptionHandler
  * @date ：Created in 2021/10/23 22:54
  */
+@Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -37,6 +43,13 @@ public class GlobalExceptionHandler {
         e.printStackTrace();
         return R.setResult(ResultCodeEnum.JSON_PARSE_ERROR);
     }
+    @ExceptionHandler(EduException.class)
+    @ResponseBody
+    public R error(EduException e){
+        log.error(ExceptionUtils.getMessage(e));
+        return R.error().message(e.getMessage()).code(e.getCode());
+    }
 }
+
 
 
