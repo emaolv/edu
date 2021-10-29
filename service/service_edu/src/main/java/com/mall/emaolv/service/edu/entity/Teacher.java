@@ -76,6 +76,4 @@ public class Teacher implements Serializable {
     @ApiModelProperty("更新时间")
     @TableField(value="gmt_modified", fill=FieldFill.INSERT_UPDATE)
     private Date gmtModified;
-
-
 }
