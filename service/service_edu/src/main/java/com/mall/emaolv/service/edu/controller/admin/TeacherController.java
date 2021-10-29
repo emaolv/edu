@@ -10,6 +10,7 @@ import com.mall.emaolv.service.edu.service.TeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,7 @@ import java.util.List;
  * @author xiaohei
  * @since 2021-10-23
  */
+@Slf4j
 @CrossOrigin
 @Api(tags="讲师管理")
 @RestController
@@ -95,6 +97,20 @@ public class TeacherController {
         List<Teacher> records = pageModel.getRecords();
         long total = pageModel.getTotal();
         return  R.ok().data("total", total).data("rows", records);
+    }
+
+    @ApiOperation(value = "根据ID列表删除讲师", notes = "根据ID列表删除讲师 逻辑删除")
+    @DeleteMapping("/batchRemove")
+    public R batchRemove(
+            @ApiParam(value = "讲师ID列表", required = true)
+            @RequestBody List<String> idList){
+        log.info("======"+idList+"====");
+        boolean result = teacherService.removeByIds(idList);
+        if(result){
+            return R.ok().message("批量删除成功");
+        }else{
+            return R.error().message("数据不存在");
+        }
     }
 
 
