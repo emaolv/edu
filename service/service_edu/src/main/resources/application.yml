@@ -1,0 +1,30 @@
+server:
+  port: 8110
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mall_edu?useUnicode=true&characterEncoding=utf-8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 1a!SY!5om8
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  application:
+    name: service-edu
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: flag
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+swagger:
+  enable: true
+  title: 磐石在线
+  applicationName: com.mall.emaolv.service
+  applicationVersion: 1.0
+  applicationDescription: 磐石在线后台管理
+  url: https://www.54tester.com
+  author: 小黑
+  basePackage: com.mall.emaolv.service
