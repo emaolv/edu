@@ -1,0 +1,24 @@
+server:
+  port: 8120
+spring:
+  profiles:
+    active: dev
+  application:
+    name: service-oss
+
+swagger:
+  enable: true
+  title: 磐石在线
+  applicationName: service-oss
+  applicationVersion: 1.0
+  applicationDescription: 磐石在线后台管理
+  url: https://www.54tester.com
+  author: 小黑
+  basePackage: com.mall.emaolv.service
+
+aliyun:
+  oss:
+    endpoint: ${你的endpoint}
+    keyid: ${你的keyid}
+    keysecret: ${你的keysecret}
+    bucketname: ${你的bucketname}
