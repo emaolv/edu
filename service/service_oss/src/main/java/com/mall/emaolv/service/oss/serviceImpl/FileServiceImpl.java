@@ -21,14 +21,11 @@ public class FileServiceImpl implements FileService {
     @Override
     public String upload(InputStream inputStream, String module, String originalFilename) {
 
-//        String endpoint = ossProperties.getEndpoint();
-//        String keyid = ossProperties.getKeyid();
-//        String keysecret = ossProperties.getKeysecret();
-//        String bucketname = ossProperties.getBucketname();
-        String endpoint = "oss-cn-beijing.aliyuncs.com";
-        String keyid = "LTAI4FoogNcLMkirN9moFXKb";
-        String keysecret = "WGrv2t1DnNZtSPFyfKDp7gij4aDtha";
-        String bucketname = "emaolv";
+        String endpoint = ossProperties.getEndpoint();
+        String keyid = ossProperties.getKeyid();
+        String keysecret = ossProperties.getKeysecret();
+        String bucketname = ossProperties.getBucketname();
+
 
         // 判断oss 实例是否存在 如果不存在则创建 如果存在则获取
         OSS ossClient = new OSSClientBuilder().build(endpoint, keyid, keysecret);
