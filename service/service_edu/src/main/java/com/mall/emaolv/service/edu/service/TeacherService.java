@@ -6,6 +6,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.mall.emaolv.service.edu.entity.vo.TeacherQueryVo;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  * 讲师 服务类
@@ -17,4 +20,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface TeacherService extends IService<Teacher> {
     IPage<Teacher> selectPage(Long page, Long limit, TeacherQueryVo teacherQueryVo);
+
+    List<Map<String, Object>> selectNameList(String key);
 }
