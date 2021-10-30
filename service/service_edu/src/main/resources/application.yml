@@ -11,6 +11,10 @@ spring:
     time-zone: GMT+8
   application:
     name: service-edu
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -28,3 +32,4 @@ swagger:
   url: https://www.54tester.com
   author: 小黑
   basePackage: com.mall.emaolv.service
+
