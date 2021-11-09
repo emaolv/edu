@@ -6,7 +6,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mall.emaolv.common.util.R;
 import com.mall.emaolv.service.edu.entity.Teacher;
 import com.mall.emaolv.service.edu.entity.vo.TeacherQueryVo;
+//import com.mall.emaolv.service.edu.feign.OssFeignService;
+import com.mall.emaolv.service.edu.feign.OssFileService;
 import com.mall.emaolv.service.edu.service.TeacherService;
+import com.oracle.tools.packager.Log;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -30,10 +33,13 @@ import java.util.Map;
 @Api(tags="讲师管理")
 @RestController
 @RequestMapping("/admin/edu/teacher")
+
 public class TeacherController {
 
     @Autowired
     private TeacherService teacherService;
+    @Autowired
+    private OssFileService ossFileService;
 
     @ApiOperation("获取所有讲师信息")
     @GetMapping("getAllInfo")
@@ -52,17 +58,6 @@ public class TeacherController {
             return R.ok().message("保存成功");
         } else {
             return R.ok().message("保存失败");
-        }
-    }
-
-    @ApiOperation("逻辑删除讲师")
-    @DeleteMapping("remove/{id}")
-    public R remove(@PathVariable String id){
-        boolean result = teacherService.removeById(id);
-        if(result){
-            return R.ok().message("删除成功");
-        }else{
-            return R.error().message("数据不存在");
         }
     }
 
@@ -120,4 +115,21 @@ public class TeacherController {
         List<Map<String, Object>> nameList = teacherService.selectNameList(key);
         return R.ok().data("nameList", nameList);
     }
+
+    @ApiOperation(value = "根据ID删除讲师", notes = "根据ID删除讲师，逻辑删除")
+    @DeleteMapping("remove/{id}")
+    public R removeById(@ApiParam(value = "讲师ID", required = true) @PathVariable String id){
+
+        // 删除讲师头像
+        teacherService.removeAvatarById(id);
+
+        // 删除讲师
+        boolean result = teacherService.removeById(id);
+        if(result){
+            return R.ok().message("删除成功");
+        } else {
+            return R.ok().message("数据不存在");
+        }
+    }
+
 }
