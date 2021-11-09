@@ -23,7 +23,7 @@ public interface TeacherService extends IService<Teacher> {
 
     List<Map<String, Object>> selectNameList(String key);
 
-    // 调用远程方法 增加根据讲师id删除图片的方法
+    // 调用远程方法removeFile
     boolean removeAvatarById(String id);
 
 }
