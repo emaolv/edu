@@ -22,4 +22,8 @@ public interface TeacherService extends IService<Teacher> {
     IPage<Teacher> selectPage(Long page, Long limit, TeacherQueryVo teacherQueryVo);
 
     List<Map<String, Object>> selectNameList(String key);
+
+    // 调用远程方法 增加根据讲师id删除图片的方法
+    boolean removeAvatarById(String id);
+
 }
