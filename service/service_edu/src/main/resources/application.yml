@@ -33,3 +33,11 @@ swagger:
   author: 小黑
   basePackage: com.mall.emaolv.service
 
+#service-oss: # 调用的提供者的名称
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+ribbon:
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 1
+  ConnectTimeout: 50000
+  ReadTimeout: 50000
